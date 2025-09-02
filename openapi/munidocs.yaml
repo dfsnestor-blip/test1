@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: MuniDocs API
+  version: 0.1.0
+servers:
+  - url: http://localhost:4001
+paths:
+  /api/auth/login:
+    post:
+      summary: Iniciar sesión
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: { email: {type:string}, password: {type:string} }
+      responses:
+        '200':
+          description: OK
+  /api/expedientes:
+    get:
+      summary: Listar expedientes
+      responses: { '200': { description: OK } }
+    post:
+      summary: Crear expediente
+      requestBody:
+        required: true
+        content: { application/json: { schema: { type: object, properties: { titulo: {type:string} } } } }
+      responses: { '201': { description: Creado } }
+  /api/documentos/upload:
+    post:
+      summary: Subir documento (multipart)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                expedienteId: { type: string }
+                titulo: { type: string }
+                file: { type: string, format: binary }
+      responses:
+        '201': { description: Creado }
+  /api/busqueda:
+    get:
+      summary: Búsqueda simple
+      parameters:
+        - in: query
+          name: q
+          schema: { type: string }
+      responses: { '200': { description: OK } }

@@ -1,0 +1,3 @@
+-- 03 — Modelo de datos (extracto)
+-- ver migraciones embebidas en src/db.ts para el MVP.
+-- Sugerencias de índices y extensiones (ej: pg_trgm) para búsqueda en producción.
